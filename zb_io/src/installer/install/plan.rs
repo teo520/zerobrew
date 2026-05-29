@@ -101,9 +101,9 @@ impl Installer {
                     continue;
                 }
 
-                for dep in &formula.dependencies {
-                    if !fetched.contains(dep) && !to_fetch.contains(dep) {
-                        to_fetch.push(dep.clone());
+                for dep in formula.runtime_dependencies() {
+                    if !fetched.contains(&dep) && !to_fetch.contains(&dep) {
+                        to_fetch.push(dep);
                     }
                 }
 

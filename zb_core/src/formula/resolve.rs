@@ -193,9 +193,11 @@ mod tests {
     #[test]
     #[cfg(not(target_os = "macos"))]
     fn resolves_uses_from_macos_runtime_dependencies_on_linux() {
+        use crate::formula::UsesFromMacos;
+
         let mut formulas = BTreeMap::new();
         let mut python = formula("python@3.14", &["openssl@3"]);
-        python.uses_from_macos = vec![crate::UsesFromMacos::Plain("expat".to_string())];
+        python.uses_from_macos = vec![UsesFromMacos::Plain("expat".to_string())];
 
         formulas.insert("python@3.14".to_string(), python);
         formulas.insert("openssl@3".to_string(), formula("openssl@3", &[]));

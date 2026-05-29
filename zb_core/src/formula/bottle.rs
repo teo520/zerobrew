@@ -106,10 +106,10 @@ fn select_bottle_with_version(
 
     #[cfg(target_os = "linux")]
     {
-        for preferred_tag in preferred_linux_bottle_tags() {
+        for &preferred_tag in preferred_linux_bottle_tags() {
             if let Some(file) = formula.bottle.stable.files.get(preferred_tag) {
                 return Ok(SelectedBottle {
-                    tag: (*preferred_tag).to_string(),
+                    tag: preferred_tag.to_string(),
                     url: file.url.clone(),
                     sha256: file.sha256.clone(),
                 });
